@@ -2670,10 +2670,13 @@ def ticket_detail_page(ticket_id):
 # APPLICATION START
 # ============================================================
 
-if __name__ == "__main__":
-    initialize_database()
-    create_demo_users()
+# Initialize the SQLite database and demo accounts when
+# the Flask application is imported by Gunicorn or started directly.
+initialize_database()
+create_demo_users()
 
+
+if __name__ == "__main__":
     import os
 
     app.run(
