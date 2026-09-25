@@ -1057,7 +1057,7 @@ document.addEventListener("DOMContentLoaded", () => {
                                             JSON.stringify({
                                                 staff_id:
                                                     user.id,
-                                                response:
+                                                comment:
                                                     message
                                             })
                                     }
