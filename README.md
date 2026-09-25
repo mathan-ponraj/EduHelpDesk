@@ -1,6 +1,6 @@
 # EduHelpDesk — Student Support & Ticket Management System
 
-A web-based student support and ticket management system developed for the **Edumerge Solutions Product Engineering Assignment**.
+A web-based student support and ticket management system [https://eduhelpdesk.onrender.com/](https://eduhelpdesk.onrender.com/)
 
 EduHelpDesk provides a structured workflow for students to raise support requests and for support staff and managers to manage, prioritize, assign, communicate, escalate, and resolve those requests.
 
