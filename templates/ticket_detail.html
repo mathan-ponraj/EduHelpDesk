@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Ticket Details | Edumerge Support</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+
+    <!-- =========================
+         TOP BAR
+    ========================== -->
+    <header class="topbar">
+
+        <div class="topbar-left">
+            <a href="/" class="brand-link">
+                Edumerge Support
+            </a>
+
+            <span class="page-title">
+                Ticket Details
+            </span>
+        </div>
+
+        <div class="topbar-right">
+
+            <span id="userRole" class="user-role"></span>
+
+            <span id="studentName" class="user-name"></span>
+
+            <button
+                type="button"
+                id="backButton"
+                class="secondary-button">
+                Back
+            </button>
+
+            <button
+                type="button"
+                id="logoutButton"
+                class="logout-button">
+                Logout
+            </button>
+
+        </div>
+
+    </header>
+
+
+    <!-- =========================
+         MAIN CONTENT
+    ========================== -->
+    <main class="container">
+
+        <!-- Page heading -->
+        <section class="page-header">
+
+            <div>
+                <h1 id="ticketPageTitle">
+                    Ticket Details
+                </h1>
+
+                <p id="ticketPageSubtitle">
+                    View ticket information, responses, SLA status and activity history.
+                </p>
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             LOADING MESSAGE
+        ========================== -->
+        <div
+            id="loadingMessage"
+            class="message-box info-message">
+
+            Loading ticket details...
+
+        </div>
+
+
+        <!-- =========================
+             ERROR MESSAGE
+        ========================== -->
+        <div
+            id="errorMessage"
+            class="message-box error-message"
+            style="display: none;">
+
+        </div>
+
+
+        <!-- =========================
+             TICKET CONTENT
+        ========================== -->
+        <div id="ticketContent" style="display: none;">
+
+
+            <!-- =========================
+                 TICKET INFORMATION
+            ========================== -->
+            <section class="dashboard-section">
+
+                <div class="section-header">
+
+                    <div>
+                        <h2>Ticket Information</h2>
+                        <p>Basic information about this support request.</p>
+                    </div>
+
+                    <div>
+                        <span
+                            id="ticketNumber"
+                            class="ticket-number">
+                        </span>
+                    </div>
+
+                </div>
+
+
+                <div class="detail-grid">
+
+                    <!-- Subject -->
+                    <div class="detail-card">
+
+                        <span class="detail-label">
+                            Subject
+                        </span>
+
+                        <strong
+                            id="ticketSubject"
+                            class="detail-value">
+                        </strong>
+
+                    </div>
+
+
+                    <!-- Category -->
+                    <div class="detail-card">
+
+                        <span class="detail-label">
+                            Category
+                        </span>
+
+                        <strong
+                            id="ticketCategory"
+                            class="detail-value">
+                        </strong>
+
+                    </div>
+
+
+                    <!-- Priority -->
+                    <div class="detail-card">
+
+                        <span class="detail-label">
+                            Priority
+                        </span>
+
+                        <span
+                            id="ticketPriority"
+                            class="status-badge">
+                        </span>
+
+                    </div>
+
+
+                    <!-- Status -->
+                    <div class="detail-card">
+
+                        <span class="detail-label">
+                            Status
+                        </span>
+
+                        <span
+                            id="ticketStatus"
+                            class="status-badge">
+                        </span>
+
+                    </div>
+
+
+                    <!-- Student -->
+                    <div class="detail-card">
+
+                        <span class="detail-label">
+                            Student
+                        </span>
+
+                        <strong
+                            id="ticketStudent"
+                            class="detail-value">
+                        </strong>
+
+                    </div>
+
+
+                    <!-- Assigned Staff -->
+                    <div class="detail-card">
+
+                        <span class="detail-label">
+                            Assigned Staff
+                        </span>
+
+                        <strong
+                            id="assignedStaff"
+                            class="detail-value">
+                        </strong>
+
+                    </div>
+
+
+                    <!-- Created -->
+                    <div class="detail-card">
+
+                        <span class="detail-label">
+                            Created
+                        </span>
+
+                        <span
+                            id="ticketCreated"
+                            class="detail-value">
+                        </span>
+
+                    </div>
+
+
+                    <!-- Last Updated -->
+                    <div class="detail-card">
+
+                        <span class="detail-label">
+                            Last Updated
+                        </span>
+
+                        <span
+                            id="ticketUpdated"
+                            class="detail-value">
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <!-- =========================
+                     DESCRIPTION
+                ========================== -->
+
+                <div class="detail-block">
+
+                    <h3>Description</h3>
+
+                    <div
+                        id="ticketDescription"
+                        class="description-box">
+                    </div>
+
+                </div>
+
+            </section>
+
+
+
+            <!-- =========================
+                 SLA & AGEING
+            ========================== -->
+            <section class="dashboard-section">
+
+                <div class="section-header">
+
+                    <div>
+                        <h2>SLA & Ageing</h2>
+
+                        <p>
+                            Current service-level status and pending action.
+                        </p>
+                    </div>
+
+                </div>
+
+
+                <div class="detail-grid">
+
+                    <!-- SLA Status -->
+                    <div class="detail-card">
+
+                        <span class="detail-label">
+                            SLA Status
+                        </span>
+
+                        <span
+                            id="slaStatus"
+                            class="status-badge">
+                        </span>
+
+                    </div>
+
+
+                    <!-- Ticket Age -->
+                    <div class="detail-card">
+
+                        <span class="detail-label">
+                            Ticket Age
+                        </span>
+
+                        <strong
+                            id="ticketAge"
+                            class="detail-value">
+                        </strong>
+
+                    </div>
+
+
+                    <!-- SLA Due -->
+                    <div class="detail-card">
+
+                        <span class="detail-label">
+                            SLA Due
+                        </span>
+
+                        <span
+                            id="slaDue"
+                            class="detail-value">
+                        </span>
+
+                    </div>
+
+
+                    <!-- SLA Remaining -->
+                    <div class="detail-card">
+
+                        <span class="detail-label">
+                            SLA Remaining
+                        </span>
+
+                        <strong
+                            id="slaRemaining"
+                            class="detail-value">
+                        </strong>
+
+                    </div>
+
+
+                    <!-- Pending Action -->
+                    <div class="detail-card">
+
+                        <span class="detail-label">
+                            Pending Action
+                        </span>
+
+                        <span
+                            id="pendingAction"
+                            class="detail-value">
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+
+            <!-- =========================
+                 RESOLUTION
+            ========================== -->
+            <section
+                id="resolutionSection"
+                class="dashboard-section">
+
+                <div class="section-header">
+
+                    <div>
+                        <h2>Resolution</h2>
+
+                        <p>
+                            Resolution information for this ticket.
+                        </p>
+                    </div>
+
+                </div>
+
+
+                <div
+                    id="resolutionContent"
+                    class="resolution-box">
+
+                    <p class="muted-text">
+                        This ticket has not been resolved yet.
+                    </p>
+
+                </div>
+
+            </section>
+
+
+
+            <!-- =========================
+                 RESPONSE / STAFF ACTION
+            ========================== -->
+            <section
+                id="responseSection"
+                class="dashboard-section">
+
+                <div class="section-header">
+
+                    <div>
+                        <h2 id="responseSectionTitle">
+                            Respond to Ticket
+                        </h2>
+
+                        <p id="responseSectionDescription">
+                            Add information or respond to this ticket.
+                        </p>
+                    </div>
+
+                </div>
+
+
+                <div
+                    id="responseMessage"
+                    class="message-box"
+                    style="display: none;">
+                </div>
+
+
+                <form id="responseForm">
+
+                    <div class="form-group">
+
+                        <label for="responseComment">
+                            Response
+                        </label>
+
+                        <textarea
+                            id="responseComment"
+                            name="responseComment"
+                            rows="5"
+                            maxlength="2000"
+                            placeholder="Enter your response..."
+                            required>
+                        </textarea>
+
+                        <small>
+                            Maximum 2000 characters.
+                        </small>
+
+                    </div>
+
+
+                    <div class="form-actions">
+
+                        <button
+                            type="submit"
+                            id="responseButton"
+                            class="primary-button">
+                            Send Response
+                        </button>
+
+                    </div>
+
+                </form>
+
+            </section>
+
+
+
+            <!-- =========================
+                 STAFF ACTIONS
+            ========================== -->
+            <section
+                id="staffActionsSection"
+                class="dashboard-section"
+                style="display: none;">
+
+                <div class="section-header">
+
+                    <div>
+                        <h2>Staff Actions</h2>
+
+                        <p>
+                            Update the ticket status or resolve the request.
+                        </p>
+                    </div>
+
+                </div>
+
+
+                <div
+                    id="staffActionMessage"
+                    class="message-box"
+                    style="display: none;">
+                </div>
+
+
+                <div class="action-row">
+
+                    <button
+                        type="button"
+                        id="startProgressButton"
+                        class="secondary-button">
+                        Mark In Progress
+                    </button>
+
+
+                    <button
+                        type="button"
+                        id="waitingButton"
+                        class="secondary-button">
+                        Waiting for Student
+                    </button>
+
+
+                    <button
+                        type="button"
+                        id="resolveButton"
+                        class="primary-button">
+                        Resolve Ticket
+                    </button>
+
+                </div>
+
+
+                <div
+                    id="resolutionFormContainer"
+                    style="display: none; margin-top: 20px;">
+
+                    <div class="form-group">
+
+                        <label for="resolutionComment">
+                            Resolution Comment
+                        </label>
+
+                        <textarea
+                            id="resolutionComment"
+                            rows="5"
+                            maxlength="2000"
+                            placeholder="Explain how the issue was resolved..."
+                            required>
+                        </textarea>
+
+                    </div>
+
+
+                    <button
+                        type="button"
+                        id="confirmResolveButton"
+                        class="primary-button">
+                        Confirm Resolution
+                    </button>
+
+                </div>
+
+            </section>
+
+
+
+            <!-- =========================
+                 ACTIVITY HISTORY
+            ========================== -->
+            <section class="dashboard-section">
+
+                <div class="section-header">
+
+                    <div>
+                        <h2>Activity History</h2>
+
+                        <p>
+                            Complete history of ticket actions and responses.
+                        </p>
+                    </div>
+
+                </div>
+
+
+                <div
+                    id="activityHistory"
+                    class="activity-list">
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </main>
+
+
+    <!-- =========================
+         JAVASCRIPT
+    ========================== -->
+
+    <script src="{{ url_for('static', filename='js/ticket_details.js') }}"></script>
+
+</body>
+</html>

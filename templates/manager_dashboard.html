@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>EduHelpDesk | Manager Dashboard</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+
+<header class="topbar manager-topbar">
+
+    <div class="brand-area">
+
+        <div class="manager-brand">
+            <span class="manager-brand-icon">E</span>
+
+            <div>
+                <h2>EduHelpDesk</h2>
+                <span class="manager-role">
+                    Manager Portal
+                </span>
+            </div>
+        </div>
+
+    </div>
+
+
+    <div class="manager-user-area">
+
+        <div class="manager-user-info">
+            <span class="user-label">Logged in as</span>
+            <strong id="managerName">Manager</strong>
+        </div>
+
+        <button id="logoutButton"
+                class="secondary-button">
+            Logout
+        </button>
+
+    </div>
+
+</header>
+
+
+<main class="dashboard-container manager-dashboard">
+
+
+    <!-- PAGE HEADER -->
+
+    <section class="page-header manager-page-header">
+
+        <div>
+
+            <span class="dashboard-eyebrow">
+                MANAGER OVERVIEW
+            </span>
+
+            <h1>Support Operations</h1>
+
+            <p>
+                Monitor tickets, staff workload, SLA performance
+                and escalations from one place.
+            </p>
+
+        </div>
+
+
+        <button id="refreshDashboard"
+                class="secondary-button refresh-button">
+            ↻ Refresh Dashboard
+        </button>
+
+    </section>
+
+
+    <!-- PRIMARY METRICS -->
+
+    <section class="manager-primary-metrics">
+
+        <div class="manager-metric-card total-metric">
+
+            <div class="metric-card-top">
+                <span class="metric-label">TOTAL TICKETS</span>
+                <span class="metric-icon">T</span>
+            </div>
+
+            <p id="totalTickets">0</p>
+
+            <span class="metric-description">
+                All submitted support tickets
+            </span>
+
+        </div>
+
+
+        <div class="manager-metric-card open-metric">
+
+            <div class="metric-card-top">
+                <span class="metric-label">OPEN TICKETS</span>
+                <span class="metric-icon">O</span>
+            </div>
+
+            <p id="openTickets">0</p>
+
+            <span class="metric-description">
+                Tickets requiring attention
+            </span>
+
+        </div>
+
+
+        <div class="manager-metric-card resolved-metric">
+
+            <div class="metric-card-top">
+                <span class="metric-label">RESOLVED</span>
+                <span class="metric-icon">✓</span>
+            </div>
+
+            <p id="resolvedTickets">0</p>
+
+            <span class="metric-description">
+                Successfully resolved tickets
+            </span>
+
+        </div>
+
+    </section>
+
+
+    <!-- OPERATIONAL OVERVIEW -->
+
+    <section class="manager-section">
+
+        <div class="manager-section-heading">
+
+            <div>
+
+                <span class="section-eyebrow">
+                    TICKET STATUS
+                </span>
+
+                <h2>Operational Overview</h2>
+
+                <p>
+                    Current distribution of support tickets.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="operational-grid">
+
+            <div class="operation-card">
+                <span>New</span>
+                <strong id="newTickets">0</strong>
+            </div>
+
+            <div class="operation-card">
+                <span>Assigned</span>
+                <strong id="assignedTickets">0</strong>
+            </div>
+
+            <div class="operation-card">
+                <span>In Progress</span>
+                <strong id="inProgressTickets">0</strong>
+            </div>
+
+            <div class="operation-card">
+                <span>Waiting for Student</span>
+                <strong id="waitingTickets">0</strong>
+            </div>
+
+            <div class="operation-card warning-operation">
+                <span>Unassigned</span>
+                <strong id="unassignedTickets">0</strong>
+            </div>
+
+            <div class="operation-card urgent-operation">
+                <span>High / Critical</span>
+                <strong id="urgentTickets">0</strong>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- SLA OVERVIEW -->
+
+    <section class="manager-section sla-manager-section">
+
+        <div class="manager-section-heading">
+
+            <div>
+
+                <span class="section-eyebrow">
+                    SERVICE PERFORMANCE
+                </span>
+
+                <h2>SLA Overview</h2>
+
+                <p>
+                    Monitor response and resolution performance.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="sla-dashboard-grid">
+
+            <div class="sla-stat breached-sla">
+
+                <div class="sla-stat-heading">
+                    <span>SLA Breached</span>
+                    <span class="sla-dot"></span>
+                </div>
+
+                <strong id="slaBreached">0</strong>
+
+                <small>
+                    Tickets exceeding SLA
+                </small>
+
+            </div>
+
+
+            <div class="sla-stat within-sla">
+
+                <div class="sla-stat-heading">
+                    <span>Within SLA</span>
+                    <span class="sla-dot"></span>
+                </div>
+
+                <strong id="slaWithin">0</strong>
+
+                <small>
+                    Currently within target
+                </small>
+
+            </div>
+
+
+            <div class="sla-stat met-sla">
+
+                <div class="sla-stat-heading">
+                    <span>SLA Met</span>
+                    <span class="sla-dot"></span>
+                </div>
+
+                <strong id="slaMet">0</strong>
+
+                <small>
+                    Tickets meeting SLA
+                </small>
+
+            </div>
+
+
+            <div class="sla-stat resolution-sla">
+
+                <div class="sla-stat-heading">
+                    <span>Avg. Resolution</span>
+                    <span class="sla-dot"></span>
+                </div>
+
+                <strong id="averageResolution">
+                    0 hrs
+                </strong>
+
+                <small>
+                    Average resolution time
+                </small>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- STAFF WORKLOAD -->
+
+    <section class="content-card manager-content-card">
+
+        <div class="manager-section-heading table-heading">
+
+            <div>
+
+                <span class="section-eyebrow">
+                    TEAM PERFORMANCE
+                </span>
+
+                <h2>Staff Workload</h2>
+
+                <p>
+                    View ticket distribution and resolution activity
+                    across support staff.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="table-wrapper manager-table-wrapper">
+
+            <table class="manager-table">
+
+                <thead>
+
+                    <tr>
+                        <th>Staff</th>
+                        <th>Assigned</th>
+                        <th>Open</th>
+                        <th>Resolved</th>
+                    </tr>
+
+                </thead>
+
+                <tbody id="staffWorkloadBody">
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </section>
+
+
+    <!-- TICKET ASSIGNMENT -->
+
+    <section class="content-card manager-content-card">
+
+        <div class="section-header manager-section-header">
+
+            <div>
+
+                <span class="section-eyebrow">
+                    TICKET MANAGEMENT
+                </span>
+
+                <h2>Ticket Assignment</h2>
+
+                <p>
+                    Assign open support tickets to available staff.
+                </p>
+
+            </div>
+
+
+            <button id="refreshTickets"
+                    class="secondary-button">
+                ↻ Refresh Tickets
+            </button>
+
+        </div>
+
+
+        <div id="assignmentMessage"
+             class="message manager-message">
+        </div>
+
+
+        <div class="table-wrapper manager-table-wrapper">
+
+            <table class="manager-table assignment-table">
+
+                <thead>
+
+                    <tr>
+                        <th>Ticket</th>
+                        <th>Student</th>
+                        <th>Subject</th>
+                        <th>Priority</th>
+                        <th>Status</th>
+                        <th>Assigned To</th>
+                        <th>Action</th>
+                    </tr>
+
+                </thead>
+
+                <tbody id="ticketAssignmentBody">
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </section>
+
+
+    <!-- ESCALATION QUEUE -->
+
+    <section class="content-card manager-content-card escalation-queue-card">
+
+        <div class="section-header manager-section-header">
+
+            <div>
+
+                <span class="section-eyebrow escalation-eyebrow">
+                    ATTENTION REQUIRED
+                </span>
+
+                <h2>Escalation Queue</h2>
+
+                <p>
+                    Tickets requiring manager-level attention.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="table-wrapper manager-table-wrapper">
+
+            <table class="manager-table">
+
+                <thead>
+
+                    <tr>
+                        <th>Ticket</th>
+                        <th>Subject</th>
+                        <th>Priority</th>
+                        <th>Status</th>
+                        <th>Assigned To</th>
+                        <th>Action</th>
+                    </tr>
+
+                </thead>
+
+                <tbody id="escalationQueueBody">
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </section>
+
+
+    <!-- ESCALATION FORM -->
+
+    <section class="content-card manager-escalation-form"
+             id="escalationSection"
+             style="display:none;">
+
+        <div class="escalation-form-header">
+
+            <div>
+
+                <span class="section-eyebrow">
+                    MANAGER ACTION
+                </span>
+
+                <h2>Escalate Ticket</h2>
+
+                <p>
+                    Add a reason or instruction before escalating
+                    the selected ticket.
+                </p>
+
+            </div>
+
+
+            <div class="selected-ticket-box">
+
+                <span>SELECTED TICKET</span>
+
+                <strong id="selectedEscalationTicket">
+                    -
+                </strong>
+
+            </div>
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label for="escalationComment">
+                Escalation Comment
+            </label>
+
+            <textarea
+                id="escalationComment"
+                rows="5"
+                placeholder="Explain why this ticket requires escalation..."
+                required></textarea>
+
+        </div>
+
+
+        <div class="escalation-action-row">
+
+            <button id="escalateButton"
+                    class="primary-button escalation-submit-button">
+                Escalate Ticket
+            </button>
+
+            <div id="escalationMessage"
+                 class="message">
+            </div>
+
+        </div>
+
+    </section>
+
+
+</main>
+
+
+<script src="{{ url_for('static', filename='js/manager.js') }}"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Create Support Ticket</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+
+<header class="topbar">
+
+    <h2>Student Support System</h2>
+
+    <div>
+        <span id="studentName"></span>
+
+        <button id="logoutButton" class="secondary-button">
+            Logout
+        </button>
+    </div>
+
+</header>
+
+
+<main class="dashboard-container">
+
+    <section class="page-header">
+
+        <div>
+            <h1>Create Support Ticket</h1>
+            <p>Submit a request to the support team.</p>
+        </div>
+
+        <a href="/student" class="secondary-button">
+            Back to Dashboard
+        </a>
+
+    </section>
+
+
+    <section class="content-card">
+
+        <form id="createTicketForm">
+
+            <div class="form-group">
+
+                <label for="category">
+                    Category
+                </label>
+
+                <select id="category" required>
+
+                    <option value="">
+                        Select category
+                    </option>
+
+                    <option value="Fees">
+                        Fees
+                    </option>
+
+                    <option value="Attendance">
+                        Attendance
+                    </option>
+
+                    <option value="ID Card">
+                        ID Card
+                    </option>
+
+                    <option value="Documents">
+                        Documents / Certificates
+                    </option>
+
+                    <option value="Technical">
+                        Technical Support
+                    </option>
+
+                    <option value="Other">
+                        Other
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label for="subject">
+                    Subject
+                </label>
+
+                <input
+                    type="text"
+                    id="subject"
+                    placeholder="Briefly describe your issue"
+                    maxlength="150"
+                    required
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label for="description">
+                    Description
+                </label>
+
+                <textarea
+                    id="description"
+                    rows="7"
+                    placeholder="Explain your issue in detail..."
+                    maxlength="2000"
+                    required
+                ></textarea>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label for="priority">
+                    Priority
+                </label>
+
+                <select id="priority" required>
+
+                    <option value="Low">
+                        Low
+                    </option>
+
+                    <option value="Medium" selected>
+                        Medium
+                    </option>
+
+                    <option value="High">
+                        High
+                    </option>
+
+                    <option value="Critical">
+                        Critical
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <div id="ticketMessage" class="message"></div>
+
+
+            <button
+                type="submit"
+                class="primary-button">
+                Submit Ticket
+            </button>
+
+        </form>
+
+    </section>
+
+</main>
+
+
+<script src="{{ url_for('static', filename='js/create_ticket.js') }}">
+</script>
+</body>
+</html>

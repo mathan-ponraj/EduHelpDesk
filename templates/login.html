@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>EduHelpDesk | Student Support</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+
+    <main class="login-container">
+
+        <!-- Decorative background elements -->
+        <div class="login-orb login-orb-one"></div>
+        <div class="login-orb login-orb-two"></div>
+
+        <div class="login-layout">
+
+            <!-- LEFT BRANDING SECTION -->
+            <section class="login-brand">
+
+                <div class="brand-badge">
+                    <span class="brand-icon">E</span>
+                    <span>EduHelpDesk</span>
+                </div>
+
+                <h1>
+                    Student support,
+                    <span>made simple.</span>
+                </h1>
+
+                <p class="brand-description">
+                    A centralized support platform for raising tickets,
+                    tracking requests, communicating with support staff,
+                    and resolving student issues efficiently.
+                </p>
+
+                <div class="brand-features">
+
+                    <div class="brand-feature">
+                        <div class="feature-icon">✓</div>
+                        <div>
+                            <strong>Track your requests</strong>
+                            <span>Follow your ticket status in one place.</span>
+                        </div>
+                    </div>
+
+                    <div class="brand-feature">
+                        <div class="feature-icon">⚡</div>
+                        <div>
+                            <strong>Faster support</strong>
+                            <span>Connect with the right support team.</span>
+                        </div>
+                    </div>
+
+                    <div class="brand-feature">
+                        <div class="feature-icon">◎</div>
+                        <div>
+                            <strong>Clear communication</strong>
+                            <span>Keep responses and updates organized.</span>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="brand-footer">
+                    Student Support & Ticket Management System
+                </div>
+
+            </section>
+
+
+            <!-- LOGIN CARD -->
+            <section class="login-card">
+
+                <div class="login-header">
+
+                    <div class="mobile-brand">
+                        <span class="mobile-brand-icon">E</span>
+                    </div>
+
+                    <h2>Welcome back</h2>
+
+                    <p>
+                        Sign in to access your support dashboard.
+                    </p>
+
+                </div>
+
+
+                <!-- LOGIN FORM -->
+
+                <form id="loginForm">
+
+                    <div class="form-group">
+
+                        <label for="email">
+                            Email address
+                        </label>
+
+                        <div class="input-wrapper">
+                            <span class="input-icon">@</span>
+
+                            <input
+                                type="email"
+                                id="email"
+                                name="email"
+                                placeholder="you@example.com"
+                                autocomplete="email"
+                                required
+                            >
+                        </div>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="password">
+                            Password
+                        </label>
+
+                        <div class="input-wrapper">
+                            <span class="input-icon">••</span>
+
+                            <input
+                                type="password"
+                                id="password"
+                                name="password"
+                                placeholder="Enter your password"
+                                autocomplete="current-password"
+                                required
+                            >
+                        </div>
+
+                    </div>
+
+
+                    <button
+                        type="submit"
+                        class="primary-button"
+                        id="loginButton"
+                    >
+                        <span>Sign In</span>
+                        <span class="button-arrow">→</span>
+                    </button>
+
+
+                    <p
+                        id="loginMessage"
+                        class="message"
+                        aria-live="polite"
+                    ></p>
+
+                </form>
+
+
+                <!-- CREATE ACCOUNT -->
+
+                <div class="register-section">
+
+                    <p class="register-text">
+                        Don't have an account?
+                    </p>
+
+                    <button
+                        type="button"
+                        class="secondary-button register-button"
+                        onclick="window.location.href='/register'"
+                    >
+                        Create an Account
+                    </button>
+
+                </div>
+
+
+                <div class="login-security">
+                    <span>🔒</span>
+                    Secure student support portal
+                </div>
+
+            </section>
+
+        </div>
+
+    </main>
+
+
+    <script src="{{ url_for('static', filename='js/login.js') }}"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>EduHelpDesk | Student Portal</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+
+</head>
+
+
+<body>
+
+
+<!-- =========================
+     TOP NAVIGATION
+========================== -->
+
+<header class="topbar student-topbar">
+
+    <div class="student-brand">
+
+        <span class="student-brand-icon">
+            E
+        </span>
+
+        <div>
+
+            <h2>
+                EduHelpDesk
+            </h2>
+
+            <span class="student-role">
+                Student Portal
+            </span>
+
+        </div>
+
+    </div>
+
+
+    <div class="student-user-area">
+
+        <div class="student-user-info">
+
+            <span class="user-label">
+                Logged in as
+            </span>
+
+            <strong id="studentName">
+                Loading...
+            </strong>
+
+        </div>
+
+
+        <button
+            type="button"
+            class="primary-button student-create-button"
+            onclick="window.location.href='/create-ticket'">
+
+            + Create Ticket
+
+        </button>
+
+
+        <button
+            type="button"
+            class="secondary-button"
+            onclick="logout()">
+
+            Logout
+
+        </button>
+
+    </div>
+
+</header>
+
+
+
+<!-- =========================
+     MAIN DASHBOARD
+========================== -->
+
+<main class="dashboard-container student-dashboard">
+
+
+    <!-- =========================
+         PAGE HEADER
+    ========================== -->
+
+    <section class="page-header student-page-header">
+
+        <div>
+
+            <span class="dashboard-eyebrow">
+                STUDENT OVERVIEW
+            </span>
+
+            <h1>
+                My Support Center
+            </h1>
+
+            <p>
+                Track your support requests, view responses
+                and stay updated on ticket progress.
+            </p>
+
+        </div>
+
+
+        <button
+            
+        type="button"
+        id="refreshTickets"
+        class="secondary-button refresh-button">
+
+        ↻ Refresh Tickets
+
+
+
+        </button>
+
+    </section>
+
+
+
+    <!-- =========================
+         QUICK OVERVIEW
+    ========================== -->
+
+    <section class="student-overview-grid">
+
+
+        <div class="student-overview-card">
+
+            <div class="student-card-top">
+
+                <span class="student-card-label">
+                    MY TICKETS
+                </span>
+
+                <span class="student-card-icon">
+                    T
+                </span>
+
+            </div>
+
+            <strong id="studentTotalTickets">
+                0
+            </strong>
+
+            <span>
+                Total support requests
+            </span>
+
+        </div>
+
+
+
+        <div class="student-overview-card student-open-card">
+
+            <div class="student-card-top">
+
+                <span class="student-card-label">
+                    OPEN
+                </span>
+
+                <span class="student-card-icon">
+                    O
+                </span>
+
+            </div>
+
+            <strong id="studentOpenTickets">
+                0
+            </strong>
+
+            <span>
+                Requests requiring attention
+            </span>
+
+        </div>
+
+
+
+        <div class="student-overview-card student-resolved-card">
+
+            <div class="student-card-top">
+
+                <span class="student-card-label">
+                    RESOLVED
+                </span>
+
+                <span class="student-card-icon">
+                    ✓
+                </span>
+
+            </div>
+
+            <strong id="studentResolvedTickets">
+                0
+            </strong>
+
+            <span>
+                Successfully resolved
+            </span>
+
+        </div>
+
+
+    </section>
+
+
+
+    <!-- =========================
+         TICKETS
+    ========================== -->
+
+    <section class="content-card student-content-card">
+
+
+        <div class="section-header student-section-header">
+
+            <div>
+
+                <span class="section-eyebrow">
+                    SUPPORT REQUESTS
+                </span>
+
+                <h2>
+                    My Tickets
+                </h2>
+
+                <p>
+                    View your submitted tickets and support responses.
+                </p>
+
+            </div>
+
+
+            <button
+                type="button"
+                class="secondary-button"
+                onclick="loadStudentTickets()">
+
+                ↻ Refresh
+
+            </button>
+
+        </div>
+
+
+
+        <!-- =========================
+             MESSAGE
+        ========================== -->
+
+        <div
+            id="studentMessage"
+            class="message"
+            aria-live="polite">
+        </div>
+
+
+
+        <!-- =========================
+             TICKET TABLE
+        ========================== -->
+
+        <div class="table-wrapper student-table-wrapper">
+
+            <table class="student-table">
+
+                <thead>
+
+                    <tr>
+
+                        <th>
+                            Ticket
+                        </th>
+
+                        <th>
+                            Subject
+                        </th>
+
+                        <th>
+                            Status
+                        </th>
+
+                        <th>
+                            Staff Response
+                        </th>
+
+                        <th>
+                            Created Date
+                        </th>
+
+                    </tr>
+
+                </thead>
+
+
+                <tbody id="studentTicketsTable">
+
+                    <tr>
+
+                        <td colspan="5">
+                            Loading tickets...
+                        </td>
+
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+
+    </section>
+
+
+</main>
+
+
+
+<script
+    src="{{ url_for('static', filename='js/student.js') }}">
+</script>
+
+
+</body>
+
+</html>

@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>EduHelpDesk | Staff Dashboard</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+
+</head>
+
+
+<body>
+
+
+<header class="topbar staff-topbar">
+
+    <div class="staff-brand">
+
+        <span class="staff-brand-icon">
+            E
+        </span>
+
+        <div>
+
+            <h2>
+                EduHelpDesk
+            </h2>
+
+            <span class="staff-role">
+                Support Staff
+            </span>
+
+        </div>
+
+    </div>
+
+
+    <div class="staff-user-area">
+
+        <div class="staff-user-info">
+
+            <span>
+                Logged in as
+            </span>
+
+            <strong id="staffName">
+                Loading...
+            </strong>
+
+        </div>
+
+
+        <button
+            type="button"
+            id="logoutButton"
+            class="secondary-button">
+
+            Logout
+
+        </button>
+
+    </div>
+
+</header>
+
+
+
+<main class="dashboard-container staff-dashboard">
+
+
+    <!-- =========================
+         PAGE HEADER
+    ========================== -->
+
+    <section class="page-header staff-page-header">
+
+        <div>
+
+            <span class="dashboard-eyebrow">
+                SUPPORT WORKSPACE
+            </span>
+
+            <h1>
+                My Assigned Tickets
+            </h1>
+
+            <p>
+                Review, respond to and manage support tickets
+                assigned to you.
+            </p>
+
+        </div>
+
+
+        <button
+            type="button"
+            id="refreshTickets"
+            class="secondary-button refresh-button">
+
+            ↻ Refresh Tickets
+
+        </button>
+
+    </section>
+
+
+
+    <!-- =========================
+         STAFF OVERVIEW
+    ========================== -->
+
+    <section class="staff-overview-grid">
+
+        <div class="staff-overview-card">
+
+            <div class="staff-overview-icon">
+                T
+            </div>
+
+            <div>
+
+                <span>
+                    ASSIGNED TICKETS
+                </span>
+
+                <strong id="staffAssignedCount">
+                    0
+                </strong>
+
+            </div>
+
+        </div>
+
+
+        <div class="staff-overview-card staff-open-card">
+
+            <div class="staff-overview-icon">
+                O
+            </div>
+
+            <div>
+
+                <span>
+                    OPEN WORK
+                </span>
+
+                <strong id="staffOpenCount">
+                    0
+                </strong>
+
+            </div>
+
+        </div>
+
+
+        <div class="staff-overview-card staff-resolved-card">
+
+            <div class="staff-overview-icon">
+                ✓
+            </div>
+
+            <div>
+
+                <span>
+                    RESOLVED
+                </span>
+
+                <strong id="staffResolvedCount">
+                    0
+                </strong>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =========================
+         ASSIGNED TICKETS
+    ========================== -->
+
+    <section class="content-card staff-ticket-card">
+
+
+        <div class="section-header staff-section-header">
+
+            <div>
+
+                <span class="section-eyebrow">
+                    TICKET MANAGEMENT
+                </span>
+
+                <h2>
+                    Assigned Support Tickets
+                </h2>
+
+                <p>
+                    View ticket details and respond directly
+                    to students.
+                </p>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- =========================
+             MESSAGE
+        ========================== -->
+
+        <div
+            id="staffMessage"
+            class="message"
+            aria-live="polite">
+        </div>
+
+
+
+        <!-- =========================
+             TICKET TABLE
+        ========================== -->
+
+        <div class="table-wrapper staff-table-wrapper">
+
+            <table class="staff-table">
+
+                <thead>
+
+                    <tr>
+
+                        <th>
+                            Ticket
+                        </th>
+
+                        <th>
+                            Student
+                        </th>
+
+                        <th>
+                            Subject
+                        </th>
+
+                        <th>
+                            Description
+                        </th>
+
+                        <th>
+                            Priority
+                        </th>
+
+                        <th>
+                            Status
+                        </th>
+
+                        <th>
+                            Action
+                        </th>
+
+                    </tr>
+
+                </thead>
+
+
+                <tbody id="staffTicketsTable">
+
+                    <tr>
+
+                        <td colspan="7">
+                            Loading assigned tickets...
+                        </td>
+
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+
+    </section>
+
+
+</main>
+
+
+
+<script
+    src="{{ url_for('static', filename='js/staff.js') }}">
+</script>
+
+
+</body>
+
+</html>
